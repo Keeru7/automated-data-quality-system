@@ -1,0 +1,22 @@
+pipeline:
+  name: "Automated Data Quality Pipeline"
+
+input:
+  file: "data/retail_store_sales.csv"
+
+output:
+  folder: "results"
+
+profiling:
+  enabled: true
+
+cleaning:
+  enabled: true
+  imputation_method: "statistical"
+
+validation:
+  enabled: true
+
+logging:
+  level: "INFO"
+  file: "results/pipeline.log"

@@ -1,0 +1,27 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Accidental Notepad duplicate files
+*.py.txt
+*.json.txt
+*.yaml.txt
+*.txt.txt
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Generated results
+results/
+reports/
+
+# Generated cleaned datasets
+data/cleaned_data.csv
+
+# Python virtual environments
+venv/
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db

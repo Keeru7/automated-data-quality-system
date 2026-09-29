@@ -1,0 +1,137 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Data Profiling Report",
+    "description": "Schema for the automated data profiling report",
+    "type": "object",
+
+    "required": [
+        "dataset_summary",
+        "column_profiles"
+    ],
+
+    "properties": {
+
+        "dataset_summary": {
+
+            "type": "object",
+
+            "required": [
+                "file_name",
+                "total_rows",
+                "total_columns",
+                "numeric_columns",
+                "categorical_columns"
+            ],
+
+            "properties": {
+
+                "file_name": {
+                    "type": "string"
+                },
+
+                "total_rows": {
+                    "type": "integer"
+                },
+
+                "total_columns": {
+                    "type": "integer"
+                },
+
+                "numeric_columns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+
+                "categorical_columns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+
+        "column_profiles": {
+
+            "type": "array",
+
+            "items": {
+
+                "type": "object",
+
+                "required": [
+                    "column_name",
+                    "data_type",
+                    "semantic_meaning",
+                    "missing_values",
+                    "missing_percentage",
+                    "unique_values",
+                    "mixed_type",
+                    "type_consistency",
+                    "format_consistency",
+                    "potential_pii",
+                    "pii_reason",
+                    "suspicious",
+                    "suspicious_reason"
+                ],
+
+                "properties": {
+
+                    "column_name": {
+                        "type": "string"
+                    },
+
+                    "data_type": {
+                        "type": "string"
+                    },
+
+                    "semantic_meaning": {
+                        "type": "string"
+                    },
+
+                    "missing_values": {
+                        "type": "integer"
+                    },
+
+                    "missing_percentage": {
+                        "type": "number"
+                    },
+
+                    "unique_values": {
+                        "type": "integer"
+                    },
+
+                    "mixed_type": {
+                        "type": "boolean"
+                    },
+
+                    "type_consistency": {
+                        "type": "string"
+                    },
+
+                    "format_consistency": {
+                        "type": "string"
+                    },
+
+                    "potential_pii": {
+                        "type": "boolean"
+                    },
+
+                    "pii_reason": {
+                        "type": "string"
+                    },
+
+                    "suspicious": {
+                        "type": "boolean"
+                    },
+
+                    "suspicious_reason": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
