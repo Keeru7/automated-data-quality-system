@@ -1,828 +1,426 @@
-\# Automated Data Quality \& Validation System
+# Automated Data Quality & Validation System
 
+An end-to-end Python-based data quality pipeline that automatically **profiles, cleans, validates, and analyzes datasets** before they are used for further analysis or machine learning.
 
+The system acts as a backend **"data gatekeeper"**, helping identify data-quality issues and producing cleaned datasets and detailed validation reports.
 
-An end-to-end Python-based data quality pipeline that automatically profiles, cleans, validates, and analyzes datasets before they are used for further analysis or machine learning.
+---
 
+## 🚀 Project Overview
 
+The system processes a raw CSV dataset through four major stages:
 
-\## Project Overview
-
-
-
-The system works as a backend "data gatekeeper".
-
-
-
-It takes a raw CSV dataset as input and performs:
-
-
-
-1\. Data profiling
-
-2\. Data cleaning and transformation
-
-3\. AI-based validation and anomaly detection
-
-4\. End-to-end pipeline orchestration
-
-
-
-The system generates cleaned data and detailed data-quality reports.
-
-
-
-\## Pipeline Architecture
-
-
-
+```text
 Raw CSV Dataset
-
-&#x20;      |
-
-&#x20;      v
-
-+-------------------+
-
-|  Data Profiling   |
-
-|     Module 1      |
-
-+---------+---------+
-
-&#x20;         |
-
-&#x20;         v
-
-+-------------------+
-
-| Data Cleaning \&   |
-
-| Transformation    |
-
-|     Module 2      |
-
-+---------+---------+
-
-&#x20;         |
-
-&#x20;         v
-
-+-------------------+
-
-| AI Validation \&   |
-
-| Anomaly Detection |
-
-|     Module 3      |
-
-+---------+---------+
-
-&#x20;         |
-
-&#x20;         v
-
-+-------------------+
-
-| Integration \&     |
-
-| Orchestration     |
-
-|     Module 4      |
-
-+---------+---------+
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;  Quality Reports
-
-&#x20;  + Cleaned Data
-
-
-
-\## Modules
-
-
-
-\### Module 1 — Data Profiling \& Metadata Intelligence
-
-
+       │
+       ▼
+┌─────────────────────────┐
+│  Module 1               │
+│  Data Profiling         │
+│  & Metadata Intelligence│
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  Module 2               │
+│  Data Cleaning          │
+│  & Transformation       │
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  Module 3               │
+│  AI Validation          │
+│  & Anomaly Detection    │
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  Module 4               │
+│  Integration            │
+│  & Production Engineering│
+└────────────┬────────────┘
+             │
+             ▼
+   Quality Reports
+   + Cleaned Dataset
+✨ Project Highlights
+Automated data profiling
+Missing-value analysis
+Schema inference
+Statistical and ML-based imputation
+Duplicate and fuzzy duplicate detection
+Data normalization and transformation
+Rule-based data validation
+AI/ML anomaly detection
+Data drift detection
+Column semantic classification
+Data-quality and health scoring
+CLI-based pipeline execution
+YAML configuration
+Logging and error handling
+Docker containerization
+DVC dataset versioning
+Automated testing with Pytest
+📌 Modules
+Module 1 — Data Profiling & Metadata Intelligence
 
 The profiling module analyzes the input dataset and identifies:
 
-
-
-\- Dataset metadata
-
-\- Column data types
-
-\- Semantic meaning of columns
-
-\- Missing values
-
-\- Unique values and cardinality
-
-\- Mixed-type columns
-
-\- Type consistency
-
-\- Format consistency
-
-\- Suspicious columns
-
-\- Potential PII
-
-\- Numeric distributions
-
-\- Correlations
-
-\- Outliers
-
-
-
-Output:
-
-
-
-profiling\_report.json
-
-
-
-Visualizations include:
-
-
-
-\- Missing-value heatmap
-
-\- Correlation heatmap
-
-\- Numeric distributions
-
-\- Outlier visualizations
-
-
-
-\### Module 2 — Data Cleaning \& Transformation
-
-
+Dataset metadata
+Column data types
+Semantic meaning of columns
+Missing values
+Unique values and cardinality
+Mixed-type columns
+Type consistency
+Format consistency
+Suspicious columns
+Potential PII
+Numeric distributions
+Correlations
+Outliers
+Output
+profiling_report.json
+Visualizations
+Missing-value heatmap
+Correlation heatmap
+Numeric distributions
+Outlier visualizations
+Module 2 — Data Cleaning & Transformation
 
 The cleaning module prepares the dataset for downstream processing.
 
-
-
 It includes:
 
-
-
-\- Schema inference
-
-\- Missing-value handling
-
-\- Statistical imputation
-
-\- KNN/regression/iterative imputation support
-
-\- Duplicate detection
-
-\- Fuzzy duplicate matching
-
-\- String normalization
-
-\- Numeric normalization
-
-\- Date normalization
-
-\- Categorical normalization
-
-\- Data transformation
-
-\- Data-quality scoring
-
-
-
-Outputs:
-
-
-
-cleaned\_data.csv
-
-cleaning\_log.json
-
-
-
-\### Module 3 — AI Validation \& Anomaly Detection
-
-
+Schema inference
+Missing-value handling
+Statistical imputation
+KNN imputation
+Regression imputation
+Iterative imputation support
+Duplicate detection
+Fuzzy duplicate matching
+String normalization
+Numeric normalization
+Date normalization
+Categorical normalization
+Data transformation
+Data-quality scoring
+Outputs
+cleaned_data.csv
+cleaning_log.json
+Module 3 — AI Validation & Anomaly Detection
 
 The validation module checks the cleaned dataset for potential quality problems.
 
+Rule-Based Validation
+Email validation
+Phone validation
+Postcode validation
+Numeric range validation
+Categorical consistency checks
+AI/ML Validation
+Isolation Forest
+Local Outlier Factor (LOF)
+Autoencoder-based anomaly detection
+Suspicious pattern detection
+Data drift detection
+Column semantic classification
+Severity scoring
+Overall data health scoring
+Model evaluation
+Output
+validation_report.json
+Module 4 — Integration & Production Engineering
 
-
-It includes:
-
-
-
-\- Email validation
-
-\- Phone validation
-
-\- Postcode validation
-
-\- Numeric range validation
-
-\- Categorical consistency checks
-
-\- Isolation Forest anomaly detection
-
-\- Local Outlier Factor (LOF)
-
-\- Autoencoder-based anomaly detection
-
-\- Suspicious pattern detection
-
-\- Data drift checks
-
-\- Column semantic classification
-
-\- Severity scoring
-
-\- Overall data health scoring
-
-\- Model evaluation
-
-
-
-Output:
-
-
-
-validation\_report.json
-
-
-
-\### Module 4 — Integration \& Production Engineering
-
-
-
-The final module combines all previous modules into one end-to-end pipeline.
-
-
+The final module integrates all previous modules into a single end-to-end pipeline.
 
 It includes:
 
+Pipeline orchestration
+YAML configuration
+Command-line execution
+Logging
+Git version control
+DVC dataset versioning
+Docker containerization
+Automated testing
+Production-oriented documentation
+Run the complete pipeline
+python pipeline.py --input data/retail_store_sales.csv --output results/
+🛠️ Technologies Used
+Technology	Purpose
+Python	Core development
+Pandas	Data processing
+NumPy	Numerical operations
+Scikit-learn	Machine learning and anomaly detection
+RapidFuzz	Fuzzy duplicate matching
+PyYAML	Pipeline configuration
+Matplotlib	Data visualization
+Seaborn	Statistical visualization
+Pytest	Automated testing
+Docker	Containerization
+Git	Version control
+DVC	Dataset versioning
+📊 Dataset
 
+The project uses a retail sales dataset containing intentionally dirty data for demonstrating:
 
-\- Pipeline orchestration
-
-\- YAML configuration
-
-\- Command-line execution
-
-\- Logging
-
-\- Git version control
-
-\- DVC dataset versioning
-
-\- Docker containerization
-
-\- Automated testing
-
-\- Production-oriented documentation
-
-
-
-The complete pipeline can be executed using:
-
-
-
-python pipeline.py --input data/retail\_store\_sales.csv --output results/
-
-
-
-\## Technologies Used
-
-
-
-\- Python
-
-\- Pandas
-
-\- NumPy
-
-\- Scikit-learn
-
-\- RapidFuzz
-
-\- PyYAML
-
-\- Matplotlib
-
-\- Seaborn
-
-\- Pytest
-
-\- Docker
-
-\- Git
-
-\- DVC
-
-
-
-\## Dataset
-
-
-
-The project uses a retail sales dataset containing intentionally dirty data for demonstrating data profiling, cleaning, validation, and anomaly detection.
-
-
-
-Input dataset:
-
-
-
-data/retail\_store\_sales.csv
-
-
+Data profiling
+Data cleaning
+Data validation
+Anomaly detection
+Data-quality analysis
+Input Dataset
+data/retail_store_sales.csv
 
 The raw dataset is tracked using DVC.
 
-
-
-\## Project Structure
-
-
-
+📁 Project Structure
 automated-data-quality-system/
-
-|
-
+│
 ├── api/
-
-│   ├── cleaning\_api.py
-
-│   ├── profiling\_api.py
-
-│   └── validation\_api.py
-
-|
-
+│   ├── cleaning_api.py
+│   ├── profiling_api.py
+│   └── validation_api.py
+│
 ├── config/
-
-│   └── pipeline\_config.yaml
-
-|
-
+│   └── pipeline_config.yaml
+│
 ├── data/
-
 │   ├── .gitignore
-
-│   └── retail\_store\_sales.csv.dvc
-
-|
-
+│   └── retail_store_sales.csv.dvc
+│
 ├── docs/
-
-│   ├── module4\_documentation.txt
-
-│   └── profiling\_report\_schema.json
-
-|
-
+│   ├── module4_documentation.txt
+│   └── profiling_report_schema.json
+│
 ├── notebooks/
-
-│   └── 01\_data\_profiling.ipynb
-
-|
-
+│   └── 01_data_profiling.ipynb
+│
 ├── src/
-
-│   ├── anomaly\_detection.py
-
+│   ├── anomaly_detection.py
 │   ├── cleaning.py
-
-│   ├── column\_classifier.py
-
-│   ├── data\_drift.py
-
-│   ├── duplicate\_detection.py
-
+│   ├── column_classifier.py
+│   ├── data_drift.py
+│   ├── duplicate_detection.py
 │   ├── imputation.py
-
 │   ├── logger.py
-
-│   ├── model\_evaluation.py
-
+│   ├── model_evaluation.py
 │   ├── normalization.py
-
 │   ├── profiling.py
-
-│   ├── quality\_scoring.py
-
-│   ├── schema\_inference.py
-
-│   ├── severity\_scoring.py
-
-│   ├── suspicious\_patterns.py
-
+│   ├── quality_scoring.py
+│   ├── schema_inference.py
+│   ├── severity_scoring.py
+│   ├── suspicious_patterns.py
 │   ├── transformation.py
-
 │   ├── validation.py
-
-│   ├── validation\_pipeline.py
-
-│   └── validation\_rules.py
-
-|
-
+│   ├── validation_pipeline.py
+│   └── validation_rules.py
+│
 ├── tests/
-
-│   ├── test\_cleaning.py
-
-│   ├── test\_pipeline.py
-
-│   ├── test\_validation.py
-
-│   └── test\_validation\_pipeline.py
-
-|
-
+│   ├── test_cleaning.py
+│   ├── test_pipeline.py
+│   ├── test_validation.py
+│   └── test_validation_pipeline.py
+│
 ├── visualizations/
-
-|
-
+│
 ├── .gitignore
-
 ├── .dvcignore
-
 ├── Dockerfile
-
 ├── pipeline.py
-
-└── requirements.txt
-
-
-
-\## Installation
-
-
-
-Clone the repository:
-
-
-
+├── requirements.txt
+└── README.md
+⚙️ Installation
+1. Clone the repository
 git clone https://github.com/Keeru7/automated-data-quality-system.git
-
-
-
-Move into the project directory:
-
-
-
+2. Move into the project directory
 cd automated-data-quality-system
-
-
-
-Install the required Python packages:
-
-
-
+3. Install dependencies
 pip install -r requirements.txt
+▶️ Running the Pipeline
 
+Run the complete pipeline using:
 
-
-\## Running the Pipeline
-
-
-
-Run the complete pipeline:
-
-
-
-python pipeline.py --input data/retail\_store\_sales.csv --output results/
-
-
+python pipeline.py --input data/retail_store_sales.csv --output results/
 
 The pipeline executes:
 
-
-
 Step 1 → Data Profiling
-
 Step 2 → Data Cleaning
-
 Step 3 → Data Validation
 
+After successful execution, the generated files are stored inside the results/ directory.
 
-
-\## Generated Outputs
-
-
-
-After successful execution:
-
-
-
+📄 Generated Outputs
 results/
-
-├── profiling\_report.json
-
-├── cleaned\_data.csv
-
-├── cleaning\_log.json
-
-├── validation\_report.json
-
+│
+├── profiling_report.json
+├── cleaned_data.csv
+├── cleaning_log.json
+├── validation_report.json
 └── pipeline.log
+profiling_report.json
 
+Contains:
 
+Dataset structure
+Column types
+Missing values
+Cardinality
+Semantic meaning
+Format consistency
+Suspicious columns
+Potential PII
+cleaned_data.csv
 
-\### profiling\_report.json
+Contains the processed dataset after the cleaning and transformation stages.
 
+cleaning_log.json
 
+Records cleaning operations including:
 
-Contains information about:
+Missing-value handling
+Duplicate detection
+Normalization
+Transformations
+Quality-score changes
+validation_report.json
 
+Contains:
 
-
-\- Dataset structure
-
-\- Column types
-
-\- Missing values
-
-\- Cardinality
-
-\- Semantic meaning
-
-\- Format consistency
-
-\- Suspicious columns
-
-\- Potential PII
-
-
-
-\### cleaned\_data.csv
-
-
-
-Contains the processed dataset after cleaning and transformation.
-
-
-
-\### cleaning\_log.json
-
-
-
-Records cleaning operations such as:
-
-
-
-\- Missing-value handling
-
-\- Duplicate detection
-
-\- Normalization
-
-\- Transformations
-
-\- Quality-score changes
-
-
-
-\### validation\_report.json
-
-
-
-Contains validation and anomaly-detection results including:
-
-
-
-\- Validation errors
-
-\- Anomalies
-
-\- Suspicious patterns
-
-\- Data drift
-
-\- Severity
-
-\- Data health information
-
-
-
-\### pipeline.log
-
-
+Validation errors
+Detected anomalies
+Suspicious patterns
+Data drift information
+Severity information
+Data health information
+pipeline.log
 
 Contains execution logs for the complete pipeline.
 
+🧪 Testing
 
-
-\## Running Tests
-
-
-
-The project uses Pytest.
-
-
+The project uses Pytest for automated testing.
 
 Run:
 
-
-
 pytest tests -v
-
-
-
-Latest project verification:
-
-
-
+Latest verification
 18 tests passed
-
 1 warning
-
-
 
 The warning was a scikit-learn convergence warning and did not cause a test failure.
 
+🐳 Docker
 
+The project supports containerized execution using Docker.
 
-\## Docker
-
-
-
-Build the Docker image:
-
-
-
+Build the Docker image
 docker build -t automated-data-quality-system .
-
-
-
-Run the pipeline:
-
-
-
+Run the pipeline
 docker run --rm automated-data-quality-system
+Save generated results to the local project
 
+On Windows:
 
+docker run --rm -v "%cd%\results:/app/results" automated-data-quality-system
 
-To save generated results to the local project:
+This allows the generated reports and cleaned dataset to remain available in the local results/ folder.
 
-
-
-docker run --rm -v "%cd%\\results:/app/results" automated-data-quality-system
-
-
-
-\## Data Versioning
-
-
+🔄 Data Versioning with DVC
 
 DVC is used to track the raw dataset separately from the source code.
 
-
-
 Dataset tracking file:
 
-
-
-data/retail\_store\_sales.csv.dvc
-
-
+data/retail_store_sales.csv.dvc
 
 Check DVC status:
 
-
-
 dvc status
-
-
-
-\## Configuration
-
-
+⚙️ Configuration
 
 Pipeline configuration is stored in:
 
-
-
-config/pipeline\_config.yaml
-
-
+config/pipeline_config.yaml
 
 The configuration controls:
 
+Input dataset
+Output directory
+Profiling
+Cleaning
+Validation
+Imputation method
+Logging level
+Log file
 
+This allows pipeline behavior to be changed without modifying the main pipeline code.
 
-\- Input dataset
+🔗 Pipeline Execution Flow
+Raw Dataset
+     │
+     ▼
+Data Profiling
+     │
+     ▼
+Data Cleaning
+     │
+     ▼
+AI Validation
+     │
+     ▼
+Quality Analysis
+     │
+     ├──────────────► profiling_report.json
+     │
+     ├──────────────► cleaning_log.json
+     │
+     ├──────────────► validation_report.json
+     │
+     ├──────────────► cleaned_data.csv
+     │
+     └──────────────► pipeline.log
+📈 Project Result
 
-\- Output directory
-
-\- Profiling
-
-\- Cleaning
-
-\- Validation
-
-\- Imputation method
-
-\- Logging level
-
-\- Log file
-
-
-
-\## Key Features
-
-
-
-\- Automated data profiling
-
-\- Data cleaning and transformation
-
-\- Missing-value handling
-
-\- Duplicate detection
-
-\- Fuzzy matching
-
-\- Rule-based validation
-
-\- AI/ML anomaly detection
-
-\- Data drift detection
-
-\- Data-quality scoring
-
-\- CLI execution
-
-\- YAML configuration
-
-\- Logging
-
-\- Docker support
-
-\- DVC dataset versioning
-
-\- Automated testing
-
-
-
-\## Project Result
-
-
-
-The completed system provides an automated data-quality pipeline that takes a raw dataset and produces:
-
-
+The completed system provides an automated backend data-quality pipeline that takes a raw dataset and processes it through:
 
 Raw Dataset
-
-&#x20;    ↓
-
+     ↓
 Profiling
-
-&#x20;    ↓
-
+     ↓
 Cleaning
-
-&#x20;    ↓
-
+     ↓
 AI Validation
+     ↓
+Quality Analysis
+     ↓
+Reports + Cleaned Dataset
 
-&#x20;    ↓
+The complete pipeline has been verified using:
 
-Quality Reports
+Python
+Docker
+DVC
+Git
+Pytest
 
-&#x20;    ↓
+The latest test execution completed with:
 
-Cleaned Dataset
-
-
-
-The pipeline was tested end-to-end using Python, Docker, and Pytest.
-
-
-
-\## Author
-
-
+18 tests passed
+👩‍💻 Author
 
 Keerthana Martha
 
-
-
 B.Tech Information Technology — 2026
-
-
 
 GitHub: https://github.com/Keeru7
 
+📌 Repository
+
+GitHub Repository:
+
+https://github.com/Keeru7/automated-data-quality-system
