@@ -1,6 +1,7 @@
 import os
 import sys
 import yaml
+import argparse
 
 # Add project folders to Python path
 sys.path.append(
@@ -146,10 +147,46 @@ def run_pipeline(config):
         raise
 
 
-if __name__ == "__main__":
+def main():
 
-    config_file = "config/pipeline_config.yaml"
+    parser = argparse.ArgumentParser(
+        description="Automated Data Quality Pipeline"
+    )
+
+    parser.add_argument(
+        "--input",
+        help="Path to the input CSV dataset"
+    )
+
+    parser.add_argument(
+        "--output",
+        help="Folder where pipeline results will be saved"
+    )
+
+    args = parser.parse_args()
+
+    # Load default YAML configuration
+    config_file = os.path.join(
+        os.path.dirname(__file__),
+        "config",
+        "pipeline_config.yaml"
+    )
 
     config = load_config(config_file)
 
+    # Override YAML values if CLI arguments are provided
+    if args.input:
+        config["input"]["file"] = args.input
+
+    if args.output:
+        config["output"]["folder"] = args.output
+        config["logging"]["file"] = os.path.join(
+            args.output,
+            "pipeline.log"
+        )
+
     run_pipeline(config)
+
+
+if __name__ == "__main__":
+    main()

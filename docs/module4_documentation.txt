@@ -1,0 +1,235 @@
+MODULE 4 — INTEGRATION, ORCHESTRATION & PRODUCTION ENGINEERING
+
+Project:
+Automated Data Quality & Validation System
+
+1. MODULE OBJECTIVE
+
+Module 4 integrates the profiling, cleaning, and validation components into one
+end-to-end automated data quality pipeline.
+
+The pipeline accepts a raw CSV dataset and produces profiling, cleaning, and
+validation results.
+
+Main technologies:
+- Python
+- YAML
+- Docker
+- DVC
+- Git
+- Pytest
+
+
+2. END-TO-END PIPELINE FLOW
+
+Raw Dataset
+     |
+     v
+Data Profiling
+     |
+     v
+Data Cleaning & Transformation
+     |
+     v
+AI Validation & Anomaly Detection
+     |
+     v
+Final Data Quality Reports
+
+
+3. PIPELINE COMPONENTS
+
+Input:
+data/retail_store_sales.csv
+
+Stage 1 — Profiling:
+- Extracts dataset metadata
+- Detects data types
+- Detects semantic meaning
+- Checks missing values
+- Checks cardinality
+- Detects suspicious columns
+- Detects possible PII
+- Generates profiling_report.json
+
+Stage 2 — Cleaning:
+- Infers expected schema
+- Handles missing values
+- Detects duplicates
+- Normalizes data
+- Performs transformations
+- Calculates data quality scores
+- Generates cleaned_data.csv
+- Generates cleaning_log.json
+
+Stage 3 — Validation:
+- Applies validation rules
+- Detects invalid values
+- Detects anomalies using AI/ML techniques
+- Performs suspicious pattern detection
+- Performs data drift checks
+- Calculates severity and health scores
+- Generates validation_report.json
+
+
+4. CONFIGURATION
+
+Pipeline configuration is stored in:
+
+config/pipeline_config.yaml
+
+The configuration controls:
+- Input dataset
+- Output folder
+- Profiling enable/disable
+- Cleaning enable/disable
+- Imputation method
+- Validation enable/disable
+- Logging level
+- Log file location
+
+
+5. COMMAND LINE INTERFACE
+
+The pipeline can be executed using:
+
+python pipeline.py --input data/retail_store_sales.csv --output results/
+
+The CLI allows users to provide different input datasets and output folders
+without modifying the pipeline source code.
+
+
+6. LOGGING
+
+The pipeline uses Python logging.
+
+Logging levels include:
+- INFO
+- WARNING
+- ERROR
+
+The pipeline records:
+- Pipeline start
+- Input dataset
+- Output location
+- Profiling status
+- Cleaning status
+- Validation status
+- Pipeline completion
+- Pipeline errors
+
+Log file:
+
+results/pipeline.log
+
+
+7. DATA VERSIONING
+
+DVC is used for dataset version control.
+
+The raw dataset is tracked using:
+
+data/retail_store_sales.csv.dvc
+
+DVC allows the dataset version to be managed separately from the Git source
+code repository.
+
+
+8. GIT VERSION CONTROL
+
+Git is used to track the project source code and configuration.
+
+The project contains:
+- Source code
+- APIs
+- Configuration
+- Tests
+- Documentation
+- Docker configuration
+- DVC metadata
+
+
+9. DOCKER
+
+The project includes a Dockerfile for containerized execution.
+
+Docker image:
+
+automated-data-quality-system:latest
+
+The Docker image contains:
+- Python 3.11
+- Project source code
+- Required Python packages
+- Pipeline configuration
+
+Build command:
+
+docker build -t automated-data-quality-system .
+
+Run command:
+
+docker run --rm automated-data-quality-system
+
+
+10. DOCKER OUTPUT MOUNTING
+
+Results can be written directly to the Windows project folder using:
+
+docker run --rm -v "%cd%\results:/app/results" automated-data-quality-system
+
+This allows the generated reports to remain available after the container
+stops.
+
+
+11. GENERATED OUTPUTS
+
+The pipeline generates:
+
+results/
+├── profiling_report.json
+├── cleaned_data.csv
+├── cleaning_log.json
+├── validation_report.json
+└── pipeline.log
+
+
+12. TESTING
+
+The project uses pytest for automated testing.
+
+Test command:
+
+pytest tests -v
+
+Latest verification:
+
+18 tests passed
+1 warning
+
+The warning was a scikit-learn convergence warning and did not cause a
+test failure.
+
+
+13. PIPELINE VERIFICATION
+
+The complete Dockerized pipeline was successfully executed.
+
+Verified stages:
+
+1. Data profiling — successful
+2. Data cleaning — successful
+3. Data validation — successful
+4. Output generation — successful
+5. Docker execution — successful
+6. Docker output mounting — successful
+7. Automated tests — 18 passed
+
+
+14. MODULE 4 RESULT
+
+Module 4 provides the production-oriented integration layer for the project.
+
+The system can now run as a complete end-to-end data quality pipeline using
+CLI commands and Docker, while supporting configuration, logging, data
+versioning, automated testing, and reproducible execution.
